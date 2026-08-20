@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://577ilenwuh3v"]
+
+[ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="1_mucky"]
+[ext_resource type="PackedScene" uid="uid://dut2t5wg4gp1t" path="res://entities/player/player.tscn" id="2_jtfo5"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5f5au"]
+size = Vector3(25, 0.5, 25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f5au"]
+albedo_texture = ExtResource("1_mucky")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_o2qlf"]
+material = SubResource("StandardMaterial3D_5f5au")
+size = Vector3(25, 0.5, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jtfo5"]
+size = Vector3(0.5, 10, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mioqa"]
+material = SubResource("StandardMaterial3D_5f5au")
+size = Vector3(0.5, 10, 10)
+
+[node name="test" type="Node3D" unique_id=33430084]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1893810238]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1473430582]
+shape = SubResource("BoxShape3D_5f5au")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1439938506]
+mesh = SubResource("BoxMesh_o2qlf")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=590919135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.9513206, 5.267411, -0.77487195)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=987078632]
+shape = SubResource("BoxShape3D_jtfo5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=99975766]
+mesh = SubResource("BoxMesh_mioqa")
+
+[node name="CharacterBody3D" parent="." unique_id=2134559883 instance=ExtResource("2_jtfo5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5718502, 0)

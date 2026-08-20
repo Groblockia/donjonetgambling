@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://dut2t5wg4gp1t"]
+
+[ext_resource type="Script" uid="uid://dfuid7ufyf3eb" path="res://entities/player/player_script.gd" id="1_fkugw"]
+[ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="1_sglur"]
+[ext_resource type="Script" uid="uid://bbpka5la4qs43" path="res://entities/player/camera_script.gd" id="2_8fjmc"]
+[ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="2_bls4j"]
+[ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="3_fkugw"]
+[ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="4_bls4j"]
+[ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_qiwj3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sglur"]
+height = 1.5
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=2134559883]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_fkugw")
+
+[node name="CameraPivot" type="Node3D" parent="." unique_id=746966117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+script = ExtResource("2_8fjmc")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1502802075]
+collision_mask = 2
+spring_length = 3.5
+margin = 0.1
+
+[node name="PlayerCamera" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1306840737]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=598056638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("CapsuleShape3D_sglur")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2139763800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+billboard = 2
+texture = ExtResource("4_bls4j")
+
+[node name="StateChart" type="Node" parent="." unique_id=1951281325]
+script = ExtResource("1_sglur")
+metadata/_custom_type_script = "uid://couw105c3bde4"
+
+[node name="CompoundState" type="Node" parent="StateChart" unique_id=1089791115]
+script = ExtResource("2_bls4j")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateChart/CompoundState" unique_id=1711083382]
+script = ExtResource("3_fkugw")
+
+[node name="to_move" type="Node" parent="StateChart/CompoundState/Idle" unique_id=2038860486]
+script = ExtResource("7_qiwj3")
+to = NodePath("../../Moving")
+event = &"event_move"
+delay_in_seconds = "0.0"
+
+[node name="Moving" type="Node" parent="StateChart/CompoundState" unique_id=681317186]
+script = ExtResource("3_fkugw")
+
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/Moving" unique_id=216281593]
+script = ExtResource("7_qiwj3")
+to = NodePath("../../Idle")
+event = &"event_idle"
+delay_in_seconds = "0.0"
+
+[node name="to_run" type="Node" parent="StateChart/CompoundState/Moving" unique_id=4256626]
+script = ExtResource("7_qiwj3")
+to = NodePath("../../Running")
+event = &"event_run"
+delay_in_seconds = "0.0"
+
+[node name="Running" type="Node" parent="StateChart/CompoundState" unique_id=688958275]
+script = ExtResource("3_fkugw")
+
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/Running" unique_id=35594982]
+script = ExtResource("7_qiwj3")
+to = NodePath("../../Idle")
+event = &"event_idle"
+delay_in_seconds = "0.0"
+
+[node name="to_move" type="Node" parent="StateChart/CompoundState/Running" unique_id=2010016968]
+script = ExtResource("7_qiwj3")
+to = NodePath("../../Moving")
+event = &"event_move"
+delay_in_seconds = "0.0"
+
+[node name="Dash" type="Node" parent="StateChart/CompoundState" unique_id=566616291]
+script = ExtResource("3_fkugw")
+
+[node name="to_idle" type="Node" parent="StateChart/CompoundState/Dash" unique_id=307417175]
+script = ExtResource("7_qiwj3")
+to = NodePath("../../Idle")
+event = &"event_idle"
+delay_in_seconds = "0.0"
+
+[node name="to_dash" type="Node" parent="StateChart/CompoundState" unique_id=857193590]
+script = ExtResource("7_qiwj3")
+to = NodePath("../Dash")
+event = &"event_dash"
+delay_in_seconds = "0.0"
+
+[connection signal="state_physics_processing" from="StateChart/CompoundState/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_processing" from="StateChart/CompoundState/Moving" to="." method="_on_moving_state_processing"]
