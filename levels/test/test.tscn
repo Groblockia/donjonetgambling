@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="1_mucky"]
 [ext_resource type="PackedScene" uid="uid://dut2t5wg4gp1t" path="res://entities/player/player.tscn" id="2_jtfo5"]
+[ext_resource type="PackedScene" uid="uid://xme4c6vtu1eq" path="res://entities/hazards/spikes/spikes.tscn" id="3_mioqa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5f5au"]
 size = Vector3(25, 0.5, 25)
@@ -46,3 +47,6 @@ mesh = SubResource("BoxMesh_mioqa")
 
 [node name="CharacterBody3D" parent="." unique_id=2134559883 instance=ExtResource("2_jtfo5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5718502, 0)
+
+[node name="Spikes" parent="." unique_id=1722469470 instance=ExtResource("3_mioqa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6726625, 1.5718502, 4.7011547)

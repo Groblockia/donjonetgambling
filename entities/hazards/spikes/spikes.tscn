@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://xme4c6vtu1eq"]
+
+[ext_resource type="Script" uid="uid://cay1ibs2achv8" path="res://core/components/hitbox.gd" id="1_kxo41"]
+[ext_resource type="Texture2D" uid="uid://oh3jquipld00" path="res://entities/hazards/spikes/spike_img.png" id="2_3xfxc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o2qlf"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[node name="Spikes" type="Node3D" unique_id=1722469470]
+
+[node name="Hitbox" type="Area3D" parent="." unique_id=1571026343]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_kxo41")
+damage = 1.0
+metadata/_custom_type_script = "uid://cay1ibs2achv8"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=101041620]
+shape = SubResource("BoxShape3D_o2qlf")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1630829572]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+billboard = 2
+texture = ExtResource("2_3xfxc")
