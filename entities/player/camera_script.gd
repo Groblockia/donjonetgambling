@@ -45,13 +45,36 @@ func _unhandled_input(event: InputEvent) -> void:
 				else:
 					joystick_motion.y = 0
 
+	if event.is_action_pressed("reset_camera"):
+		reset_camera()
+
 
 func mouse_movement() -> void:
-	rotate_y(-mouse_motion.x * (mouse_sens*SENSITIVITY_SCALE))
-	spring_arm.rotate_x(-mouse_motion.y * (mouse_sens*SENSITIVITY_SCALE))
+	rotate_y(-mouse_motion.x * (mouse_sens * SENSITIVITY_SCALE))
+	spring_arm.rotate_x(-mouse_motion.y * (mouse_sens * SENSITIVITY_SCALE))
 	mouse_motion = Vector2.ZERO
 
 
 func joystick_movement(delta) -> void:
 	rotate_y(-joystick_motion.x * joystick_sens * delta)
 	spring_arm.rotate_x(-joystick_motion.y * joystick_sens * delta)
+
+
+func reset_camera() -> void:
+	# 1. Extract the target Euler angles from the player's transform.
+	var player_euler: Vector3 = player.mesh_transform.basis.get_euler()
+	
+	# 2. Convert the isolated axes back into Quaternions
+	var target_y: Quaternion = Quaternion.from_euler(Vector3(0, player_euler.y, 0))
+	var target_x: Quaternion = Quaternion.from_euler(Vector3(player_euler.x + deg_to_rad(-25), 0, 0))
+	
+	var t = get_tree().create_tween()
+	t.set_trans(Tween.TRANS_CUBIC)
+	t.set_ease(Tween.EASE_IN_OUT)
+	
+	# 3. Tween the "quaternion" property instead of "rotation"
+	# CameraPivot rotation (Yaw / Y-axis)
+	t.tween_property(self, "quaternion", target_y, 0.5)
+	
+	# SpringArm rotation (Pitch / X-axis)
+	t.parallel().tween_property(spring_arm, "quaternion", target_x, 0.5)

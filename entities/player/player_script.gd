@@ -14,16 +14,25 @@ extends CharacterBody3D
 @export var amplitude := PI * 0.05
 
 var t_bob: float
+var mesh_transform: get = get_player_mesh_transform
 
 @onready var camera_pivot := $CameraPivot
 @onready var statechart := $StateChart
 @onready var jump_timer := %JumpTimer
 @onready var original_y: float = $Sprite3D.position.y
+@onready var player_mesh := $Sprite3D
 
+func get_player_mesh_transform() -> Transform3D:
+	return player_mesh.global_transform
+
+#func _process(_delta: float) -> void:
+	#mesh_facing_direction = player_mesh.rotation
 
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 	handle_bobbing(delta)
+	set_player_rotation()
+	
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -76,10 +85,12 @@ func handle_bobbing(delta) -> void:
 		t_bob = 0
 
 
-#func set_player_rotation() -> void:
-#var dir = get_direction()
-#if dir.length() > 0:
-#player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(-dir.x, -dir.z), 0.4)
+func set_player_rotation() -> void:
+	var dir = get_direction()
+	if dir.length() > 0:
+		player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(-dir.x, -dir.z), 0.4)
+
+
 #region GROUNDED
 func _on_grounded_state_physics_processing(_delta: float) -> void:
 	if !is_on_floor():
