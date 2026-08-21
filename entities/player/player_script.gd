@@ -15,6 +15,7 @@ extends CharacterBody3D
 
 var t_bob: float
 var mesh_transform: get = get_player_mesh_transform
+var can_move_camera := true
 
 @onready var camera_pivot := $CameraPivot
 @onready var statechart := $StateChart
