@@ -8,10 +8,13 @@ const SENSITIVITY_SCALE: float = 0.00038397243458548043006658879114174
 @export var deadzone := 0.05
 
 @export_category("misc")
-@export var center_camera_time := 0.2
+@export var center_camera_time := 0.4
 
 var mouse_motion: Vector2
 var joystick_motion: Vector2
+var camera_not_moving: bool:
+	get:
+		return mouse_motion == Vector2.ZERO #&& joystick_motion == Vector2.ZERO
 
 @onready var camera := %PlayerCamera
 @onready var spring_arm := $SpringArm3D
@@ -20,13 +23,11 @@ var joystick_motion: Vector2
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	#SignalBus.mouse_sens_changed.connect(_on_mouse_sens_changed)
 
 
 func _process(delta: float) -> void:
 	mouse_movement()
 	joystick_movement(delta)
-	#print(spring_arm.rotation.x)
 	spring_arm.rotation.x = clamp(spring_arm.rotation.x, deg_to_rad(-75), deg_to_rad(60))
 
 
@@ -67,24 +68,36 @@ func joystick_movement(delta) -> void:
 
 
 func reset_camera() -> void:
-	# 1. Extract the target Euler angles from the player's transform.
 	var player_euler: Vector3 = player.mesh_transform.basis.get_euler()
 
-	# 2. Convert the isolated axes back into Quaternions
-	var target_y: Quaternion = Quaternion.from_euler(Vector3(0, player_euler.y, 0))
-	var target_x: Quaternion = Quaternion.from_euler(
-		Vector3(player_euler.x + deg_to_rad(-25), 0, 0)
-	)
+	var quat_y: Quaternion = Quaternion.from_euler(Vector3(0, player_euler.y, 0))
+	var quat_x: Quaternion = Quaternion.from_euler(Vector3(player_euler.x + deg_to_rad(-25), 0, 0))
 
 	var t = get_tree().create_tween()
 	t.set_trans(Tween.TRANS_CUBIC)
 	t.set_ease(Tween.EASE_IN_OUT)
 
-	# 3. Tween the "quaternion" property instead of "rotation"
 	# CameraPivot rotation (Yaw / Y-axis)
-	t.tween_property(self, "quaternion", target_y, center_camera_time)
+	t.tween_property(self, "quaternion", quat_y, center_camera_time)
 
 	# SpringArm rotation (Pitch / X-axis)
-	t.parallel().tween_property(spring_arm, "quaternion", target_x, center_camera_time)
+	t.parallel().tween_property(spring_arm, "quaternion", quat_x, center_camera_time)
+
 	await t.finished
 	player.can_move_camera = true
+
+
+## returns angle betzeen camera's resting pos and current pos, in rad
+func get_camera_relative_angle() -> float:
+	# 1. Get the direction from the player to the camera (ignoring the Y/Up axis)
+	var offset = camera.global_position - player.global_position
+	var cam_dir_2d = Vector2(offset.x, offset.z).normalized()
+
+	# 2. Get the player's BACKWARD direction
+	var player_back_3d: Vector3 = player.player_mesh.global_basis.z
+	var player_back_2d: Vector2 = Vector2(player_back_3d.x, player_back_3d.z).normalized()
+
+	# 3. Calculate the signed angle between them
+	var angle_rad = player_back_2d.angle_to(cam_dir_2d)
+
+	return angle_rad
