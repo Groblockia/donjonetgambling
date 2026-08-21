@@ -12,7 +12,7 @@ size = Vector3(1.5, 1.5, 1.5)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_kxo41")
-damage = 1.0
+damage = 1
 metadata/_custom_type_script = "uid://cay1ibs2achv8"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox" unique_id=101041620]

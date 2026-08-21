@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://cjkxtxuk00tjs"]
+
+[ext_resource type="Script" uid="uid://457ceboadhrq" path="res://ui/health/health_ui_script.gd" id="1_3vpjw"]
+[ext_resource type="Texture2D" uid="uid://bt6kibgxql7x3" path="res://ui/health/heart_full.png" id="2_k4jqs"]
+
+[node name="HealthUI" type="Control" unique_id=853864096]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_3vpjw")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=891553225]
+layout_mode = 1
+offset_right = 496.0
+offset_bottom = 173.0
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=92108204]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_k4jqs")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=1035912866]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_k4jqs")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=2133465982]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_k4jqs")
+expand_mode = 1

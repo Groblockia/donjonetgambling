@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="5_26q78"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_bectd"]
+[ext_resource type="PackedScene" uid="uid://cjkxtxuk00tjs" path="res://ui/health/health_ui.tscn" id="10_7thud"]
 [ext_resource type="Script" uid="uid://cx65pjl7geigh" path="res://core/components/hurtbox.gd" id="10_wvtmh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sglur"]
@@ -33,7 +34,8 @@ height = 1.4208984
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_fkugw")
-jump_time = 0.2
+dash_power = 25.0
+dash_time = 0.15
 
 [node name="CameraPivot" type="Node3D" parent="." unique_id=746966117]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
@@ -144,6 +146,11 @@ to = NodePath("../../Idle")
 event = &"event_idle"
 delay_in_seconds = "0.0"
 
+[node name="DashTimer" type="Timer" parent="StateChart/states/Movement/GROUNDED/Dash" unique_id=1189179704]
+unique_name_in_owner = true
+process_callback = 0
+one_shot = true
+
 [node name="event_fall" type="Node" parent="StateChart/states/Movement/GROUNDED" unique_id=1895866107]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../AIRBORNE/Falling")
@@ -181,6 +188,7 @@ delay_in_seconds = "0.0"
 [node name="JumpTimer" type="Timer" parent="StateChart/states/Movement/AIRBORNE/Jumping" unique_id=1898194402]
 unique_name_in_owner = true
 process_callback = 0
+wait_time = 10.0
 one_shot = true
 
 [node name="Attack" type="Node" parent="StateChart/states" unique_id=1124312892]
@@ -196,6 +204,7 @@ script = ExtResource("3_fkugw")
 [node name="StateChartDebugger" parent="." unique_id=533545472 instance=ExtResource("9_bectd")]
 offset_right = -665.0
 offset_bottom = -232.0
+enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=1528886693]
@@ -209,10 +218,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5112025, 0)
 shape = SubResource("CapsuleShape3D_7thud")
 debug_color = Color(1, 0, 0, 0.41960785)
 
+[node name="UI" type="CanvasLayer" parent="." unique_id=800904704]
+
+[node name="HealthUI" parent="UI" unique_id=333825233 instance=ExtResource("10_7thud")]
+
 [connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED" to="." method="_on_grounded_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED/Idle" to="." method="_on_idle_state_physics_processing"]
 [connection signal="state_processing" from="StateChart/states/Movement/GROUNDED/Moving" to="." method="_on_moving_state_processing"]
 [connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED/Running" to="." method="_on_running_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/states/Movement/GROUNDED/Dash" to="." method="_on_dash_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED/Dash" to="." method="_on_dash_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/states/Movement/AIRBORNE/Falling" to="." method="_on_fall_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_physics_processing"]
