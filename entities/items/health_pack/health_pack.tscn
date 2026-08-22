@@ -1,3 +1,23 @@
 [gd_scene format=3 uid="uid://byke5qp5q4exv"]
 
+[ext_resource type="Script" uid="uid://c5p1wanaojwb6" path="res://entities/items/health_pack/health_pack_script.gd" id="1_h0lom"]
+[ext_resource type="Texture2D" uid="uid://dcg8kbokkdmnf" path="res://entities/items/health_pack/healthpack.png" id="2_ltkjw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ltkjw"]
+
 [node name="HealthPack" type="Node3D" unique_id=741003545]
+script = ExtResource("1_h0lom")
+heal = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1566624078]
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+texture = ExtResource("2_ltkjw")
+
+[node name="Area3D" type="Area3D" parent="." unique_id=1381498715]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1498517106]
+shape = SubResource("BoxShape3D_ltkjw")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

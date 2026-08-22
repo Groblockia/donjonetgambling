@@ -1,6 +1,9 @@
 class_name Player
 extends CharacterBody3D
 
+@export_category("components")
+@export var hp: Health
+
 @export_category("movement stats")
 @export var speed := 6.0
 @export var run_speed := 12.0
@@ -15,6 +18,7 @@ extends CharacterBody3D
 @export var frequency := 10.0
 @export var amplitude := PI * 0.05
 
+
 ## Used for the bobbing of the sprite
 var t_bob: float
 var mesh_transform: Transform3D:
@@ -28,17 +32,16 @@ var can_move_camera := true
 @onready var original_y: float = $Sprite3D.position.y
 @onready var player_mesh := $Sprite3D
 
-var hp = Health.new(3)
+func _ready() -> void:
+	hp.set_current_health(hp.get_max_health())
 
 
-#func _process(_delta: float) -> void:
-#mesh_facing_direction = player_mesh.rotation
 func _physics_process(delta: float) -> void:
 	move_and_slide()
 	handle_bobbing(delta)
 	set_player_rotation()
 	$UI/HealthUI.update_hearts(hp.current_health)
-	print(hp.current_health)
+
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -108,7 +111,7 @@ func set_player_rotation() -> void:
 		player_mesh.rotation.y = lerp_angle(player_mesh.rotation.y, atan2(-dir.x, -dir.z), 0.4)
 
 
-func _on_hurtbox_hit(damage: int) -> void:
+func _on_hurtbox_hit(_who: Node3D, damage: int) -> void:
 	print_debug("received ", damage, " damage")
 	hp.remove_health(damage)
 
@@ -154,7 +157,6 @@ func _on_dash_state_entered() -> void:
 func _on_dash_state_physics_processing(_delta: float) -> void:
 	if dash_timer.is_stopped():
 		statechart.send_event("event_idle")
-
 #endregion
 
 #region AIRBORNE

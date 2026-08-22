@@ -8,7 +8,8 @@ const HEART_FULL = preload("uid://bt6kibgxql7x3")
 
 func _ready() -> void:
 	for i in $HBoxContainer.get_children():
-		hearts.append(i)
+		if i.is_in_group("heart"):
+			hearts.append(i)
 
 
 func update_hearts(health: int) -> void:

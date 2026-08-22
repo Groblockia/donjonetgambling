@@ -14,19 +14,19 @@ offset_right = 496.0
 offset_bottom = 173.0
 theme_override_constants/separation = 0
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=92108204]
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=92108204 groups=["heart"]]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_k4jqs")
 expand_mode = 1
 
-[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=1035912866]
+[node name="TextureRect2" type="TextureRect" parent="HBoxContainer" unique_id=1035912866 groups=["heart"]]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_k4jqs")
 expand_mode = 1
 
-[node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=2133465982]
+[node name="TextureRect3" type="TextureRect" parent="HBoxContainer" unique_id=2133465982 groups=["heart"]]
 layout_mode = 2
 size_flags_horizontal = 3
 texture = ExtResource("2_k4jqs")
