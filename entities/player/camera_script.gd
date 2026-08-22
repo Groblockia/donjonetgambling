@@ -88,16 +88,5 @@ func reset_camera() -> void:
 
 
 ## returns angle betzeen camera's resting pos and current pos, in rad
-func get_camera_relative_angle() -> float:
-	# 1. Get the direction from the player to the camera (ignoring the Y/Up axis)
-	var offset = camera.global_position - player.global_position
-	var cam_dir_2d = Vector2(offset.x, offset.z).normalized()
-
-	# 2. Get the player's BACKWARD direction
-	var player_back_3d: Vector3 = player.player_mesh.global_basis.z
-	var player_back_2d: Vector2 = Vector2(player_back_3d.x, player_back_3d.z).normalized()
-
-	# 3. Calculate the signed angle between them
-	var angle_rad = player_back_2d.angle_to(cam_dir_2d)
-
-	return angle_rad
+func get_camera_angle_from_player() -> float:
+	return wrapf(global_rotation.y - player.player_mesh.global_rotation.y, -PI, PI)
