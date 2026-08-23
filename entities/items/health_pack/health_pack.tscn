@@ -11,6 +11,7 @@ heal = 1
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=1566624078]
 transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0)
+billboard = 2
 texture = ExtResource("2_ltkjw")
 
 [node name="Area3D" type="Area3D" parent="." unique_id=1381498715]

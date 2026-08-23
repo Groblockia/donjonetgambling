@@ -11,67 +11,133 @@
 [ext_resource type="PackedScene" uid="uid://cjkxtxuk00tjs" path="res://ui/health/health_ui.tscn" id="10_7thud"]
 [ext_resource type="Script" uid="uid://cx65pjl7geigh" path="res://core/components/hurtbox.gd" id="10_wvtmh"]
 [ext_resource type="Script" uid="uid://ckqu0thckrss7" path="res://core/components/health.gd" id="11_7thud"]
+[ext_resource type="Shader" uid="uid://d03ajrw3h0cd" path="res://shared/shaders/depth_shader.gdshader" id="12_a1qjk"]
+[ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="13_j3ovn"]
+[ext_resource type="PackedScene" uid="uid://ddru60yvfn1if" path="res://entities/weapons/sword/sword.tscn" id="14_afbqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sglur"]
 height = 1.5
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bectd"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7thud"]
+render_priority = 0
+shader = ExtResource("12_a1qjk")
+shader_parameter/extruded_alpha_cull = 1.0
+shader_parameter/opaque_extrude = true
+shader_parameter/keep_image = true
+shader_parameter/image_alpha_cull = 1.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/color_mix = Color(0, 0, 0, 1)
+shader_parameter/mix_strength = 0.0
+shader_parameter/Texture = ExtResource("13_j3ovn")
+shader_parameter/texture_calls = 20
+shader_parameter/ray_bias = 1.0
+shader_parameter/infinite_holes = false
+shader_parameter/Hframes = 1
+shader_parameter/Vframes = 1
+shader_parameter/frame = 0
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wvtmh"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+[sub_resource type="BoxMesh" id="BoxMesh_7thud"]
+material = SubResource("ShaderMaterial_7thud")
+size = Vector3(1, 1, 0.203)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7thud"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+[sub_resource type="Animation" id="Animation_gx6sm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshPivot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.36540413, 1.2717893, 0.55431634)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshPivot:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 2.6179938)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("MeshPivot:quaternion")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0, 0, 1, 7.54979e-08)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = false
+tracks/4/path = NodePath(".:quaternion")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Quaternion(0, 0.70710665, 0, 0.7071069)]
+}
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_a1qjk"]
-load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.s3tc.ctex"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqrof"]
+_data = {
+&"RESET": SubResource("Animation_gx6sm")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7thud"]
 radius = 0.43017578
 height = 1.4208984
 
-[node name="CharacterBody3D" type="CharacterBody3D" unique_id=2134559883 node_paths=PackedStringArray("hp")]
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=2134559883]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource("1_fkugw")
-hp = NodePath("Node/Health")
 dash_power = 25.0
 dash_time = 0.15
-
-[node name="CameraPivot" type="Node3D" parent="." unique_id=746966117]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
-script = ExtResource("2_8fjmc")
-
-[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1502802075]
-physics_interpolation_mode = 1
-collision_mask = 2
-spring_length = 3.5
-margin = 0.1
-
-[node name="PlayerCamera" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1306840737]
-unique_name_in_owner = true
+bobup_time = 0.3
+bobup_distance = 0.6
+bobdown_time = 0.3
+bobdown_distance = 0.3
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=598056638]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("CapsuleShape3D_sglur")
 
-[node name="Sprite3D" type="Sprite3D" parent="." unique_id=2139763800]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-texture = SubResource("CompressedTexture2D_bectd")
+[node name="PlayerMesh" type="MeshInstance3D" parent="." unique_id=1437030652]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("BoxMesh_7thud")
 
-[node name="Sprite3D2" type="Sprite3D" parent="Sprite3D" unique_id=453433150]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.015)
-texture = SubResource("CompressedTexture2D_wvtmh")
+[node name="Weapon" type="Node3D" parent="PlayerMesh" unique_id=1615664389]
+top_level = true
 
-[node name="Sprite3D3" type="Sprite3D" parent="Sprite3D/Sprite3D2" unique_id=439893115]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.015)
-texture = SubResource("CompressedTexture2D_7thud")
+[node name="Sword" parent="PlayerMesh/Weapon" unique_id=1400746801 instance=ExtResource("14_afbqv")]
 
-[node name="Sprite3D4" type="Sprite3D" parent="Sprite3D/Sprite3D2/Sprite3D3" unique_id=1608860981]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.015)
-modulate = Color(1, 0.120000005, 0.120000005, 1)
-texture = SubResource("CompressedTexture2D_a1qjk")
+[node name="AnimationPlayer" parent="PlayerMesh/Weapon/Sword" index="1" unique_id=1625742699]
+libraries/ = SubResource("AnimationLibrary_yqrof")
 
 [node name="StateChart" type="Node" parent="." unique_id=1951281325]
 script = ExtResource("1_sglur")
@@ -209,27 +275,49 @@ offset_bottom = -232.0
 enabled = false
 initial_node_to_watch = NodePath("../StateChart")
 
-[node name="Hurtbox" type="Area3D" parent="." unique_id=1528886693]
-collision_layer = 0
-collision_mask = 24
-script = ExtResource("10_wvtmh")
-metadata/_custom_type_script = "uid://cx65pjl7geigh"
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1154777874]
+light_energy = 0.5
+omni_range = 25.0
+omni_attenuation = 0.1
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Hurtbox" unique_id=456549030]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5112025, 0)
-shape = SubResource("CapsuleShape3D_7thud")
-debug_color = Color(1, 0, 0, 0.41960785)
+[node name="CameraPivot" type="Node3D" parent="." unique_id=746966117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+script = ExtResource("2_8fjmc")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="CameraPivot" unique_id=1502802075]
+physics_interpolation_mode = 1
+collision_mask = 2
+spring_length = 3.5
+margin = 0.1
+
+[node name="PlayerCamera" type="Camera3D" parent="CameraPivot/SpringArm3D" unique_id=1306840737]
+unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=800904704]
 
 [node name="HealthUI" parent="UI" unique_id=333825233 instance=ExtResource("10_7thud")]
 
-[node name="Node" type="Node" parent="." unique_id=36875404]
+[node name="Stats" type="Node" parent="." unique_id=36875404]
 
-[node name="Health" type="Node" parent="Node" unique_id=1666152975]
+[node name="Health" type="Node" parent="Stats" unique_id=1666152975]
+unique_name_in_owner = true
 script = ExtResource("11_7thud")
 max_health = 3
 metadata/_custom_type_script = "uid://ckqu0thckrss7"
+
+[node name="Collisions" type="Node" parent="." unique_id=1991675244]
+
+[node name="Hurtbox" type="Area3D" parent="Collisions" unique_id=1528886693]
+visible = false
+collision_layer = 0
+collision_mask = 24
+script = ExtResource("10_wvtmh")
+metadata/_custom_type_script = "uid://cx65pjl7geigh"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Hurtbox" unique_id=456549030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5112025, 0)
+shape = SubResource("CapsuleShape3D_7thud")
+debug_color = Color(1, 0, 0, 0.41960785)
 
 [connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED" to="." method="_on_grounded_state_physics_processing"]
 [connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED/Idle" to="." method="_on_idle_state_physics_processing"]
@@ -241,4 +329,6 @@ metadata/_custom_type_script = "uid://ckqu0thckrss7"
 [connection signal="state_entered" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_physics_processing"]
 [connection signal="state_unhandled_input" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_unhandled_input"]
-[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+[connection signal="hit" from="Collisions/Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="PlayerMesh/Weapon/Sword"]
