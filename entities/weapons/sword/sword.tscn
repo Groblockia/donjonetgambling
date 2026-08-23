@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dvmqefb7t2ciq" path="res://entities/weapons/sword/sword.glb" id="2_o81w5"]
 [ext_resource type="AnimationLibrary" uid="uid://cvlvnksw60xve" path="res://entities/weapons/sword/sword.res" id="3_o81w5"]
 
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dqysa"]
+
 [node name="Sword" type="Node3D" unique_id=1400746801 node_paths=PackedStringArray("anim_player")]
 script = ExtResource("1_p1b4g")
 wp_name = "Sword"
@@ -12,12 +14,13 @@ anim_player = NodePath("AnimationPlayer")
 metadata/_custom_type_script = "uid://bre0s1m825ci3"
 
 [node name="MeshPivot" type="Node3D" parent="." unique_id=79376378]
-transform = Transform3D(-0.8660253, -0.50000006, 0, 0.50000006, -0.8660253, 0, 0, 0, 1, 0.36540413, 1.2717893, 0.55431634)
+transform = Transform3D(-0.8660254, -0.50000006, 0, 0.50000006, -0.8660254, 0, 0, 0, 1, 0.36540413, 1.2717893, 0.55431634)
 
 [node name="sword" parent="MeshPivot" unique_id=879439519 instance=ExtResource("2_o81w5")]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.862, 0)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1625742699]
+libraries/ = SubResource("AnimationLibrary_dqysa")
 libraries/sword = ExtResource("3_o81w5")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
