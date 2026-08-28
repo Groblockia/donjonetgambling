@@ -43,7 +43,6 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	handle_bobbing(delta)
 	set_player_rotation()
-	$UI/HealthUI.update_hearts(hp.current_health)
 	manage_weapon_position()
 
 
@@ -222,9 +221,10 @@ func _on_jumping_state_entered() -> void:
 func _on_jumping_state_physics_processing(_delta: float) -> void:
 	set_move_velocity(get_direction(), speed, accel / 2)
 	if jump_timer.is_stopped():
-		velocity.y = jump_power / 2
 		statechart.send_event("event_fall")
 
+func _on_jumping_state_exited() -> void:
+	velocity.y = jump_power / 4
 
 func _on_jumping_state_unhandled_input(event: InputEvent) -> void:
 	if event.is_action_released("jump"):

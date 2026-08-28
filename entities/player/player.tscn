@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bbpka5la4qs43" path="res://entities/player/camera_script.gd" id="2_8fjmc"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="2_bls4j"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="3_fkugw"]
-[ext_resource type="Script" uid="uid://c1vp0ojjvaby1" path="res://addons/godot_state_charts/parallel_state.gd" id="5_26q78"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_bectd"]
 [ext_resource type="PackedScene" uid="uid://cjkxtxuk00tjs" path="res://ui/health/health_ui.tscn" id="10_7thud"]
@@ -136,6 +135,9 @@ top_level = true
 
 [node name="Sword" parent="PlayerMesh/Weapon" unique_id=1400746801 instance=ExtResource("14_afbqv")]
 
+[node name="MeshPivot" parent="PlayerMesh/Weapon/Sword" index="0" unique_id=79376378]
+transform = Transform3D(-0.8660253, -0.5, 0, 0.5, -0.8660253, 0, 0, 0, 1, 0.36540413, 1.2717893, 0.55431634)
+
 [node name="AnimationPlayer" parent="PlayerMesh/Weapon/Sword" index="1" unique_id=1625742699]
 libraries/ = SubResource("AnimationLibrary_yqrof")
 
@@ -143,131 +145,118 @@ libraries/ = SubResource("AnimationLibrary_yqrof")
 script = ExtResource("1_sglur")
 metadata/_custom_type_script = "uid://couw105c3bde4"
 
-[node name="states" type="Node" parent="StateChart" unique_id=125706899]
-script = ExtResource("5_26q78")
-
-[node name="Movement" type="Node" parent="StateChart/states" unique_id=1089791115]
+[node name="Movement" type="Node" parent="StateChart" unique_id=1089791115]
 script = ExtResource("2_bls4j")
 initial_state = NodePath("GROUNDED")
 
-[node name="GROUNDED" type="Node" parent="StateChart/states/Movement" unique_id=1003369168]
+[node name="GROUNDED" type="Node" parent="StateChart/Movement" unique_id=1003369168]
 script = ExtResource("2_bls4j")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateChart/states/Movement/GROUNDED" unique_id=1711083382]
+[node name="Idle" type="Node" parent="StateChart/Movement/GROUNDED" unique_id=1711083382]
 script = ExtResource("3_fkugw")
 
-[node name="to_move" type="Node" parent="StateChart/states/Movement/GROUNDED/Idle" unique_id=2038860486]
+[node name="to_move" type="Node" parent="StateChart/Movement/GROUNDED/Idle" unique_id=2038860486]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Moving")
 event = &"event_move"
 delay_in_seconds = "0.0"
 
-[node name="Moving" type="Node" parent="StateChart/states/Movement/GROUNDED" unique_id=681317186]
+[node name="Moving" type="Node" parent="StateChart/Movement/GROUNDED" unique_id=681317186]
 script = ExtResource("3_fkugw")
 
-[node name="to_idle" type="Node" parent="StateChart/states/Movement/GROUNDED/Moving" unique_id=216281593]
+[node name="to_idle" type="Node" parent="StateChart/Movement/GROUNDED/Moving" unique_id=216281593]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Idle")
 event = &"event_idle"
 delay_in_seconds = "0.0"
 
-[node name="to_run" type="Node" parent="StateChart/states/Movement/GROUNDED/Moving" unique_id=4256626]
+[node name="to_run" type="Node" parent="StateChart/Movement/GROUNDED/Moving" unique_id=4256626]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Running")
 event = &"event_run"
 delay_in_seconds = "0.0"
 
-[node name="to_dash" type="Node" parent="StateChart/states/Movement/GROUNDED/Moving" unique_id=857193590]
+[node name="to_dash" type="Node" parent="StateChart/Movement/GROUNDED/Moving" unique_id=857193590]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Dash")
 event = &"event_dash"
 delay_in_seconds = "0.0"
 
-[node name="Running" type="Node" parent="StateChart/states/Movement/GROUNDED" unique_id=688958275]
+[node name="Running" type="Node" parent="StateChart/Movement/GROUNDED" unique_id=688958275]
 script = ExtResource("3_fkugw")
 
-[node name="to_idle" type="Node" parent="StateChart/states/Movement/GROUNDED/Running" unique_id=35594982]
+[node name="to_idle" type="Node" parent="StateChart/Movement/GROUNDED/Running" unique_id=35594982]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Idle")
 event = &"event_idle"
 delay_in_seconds = "0.0"
 
-[node name="to_move" type="Node" parent="StateChart/states/Movement/GROUNDED/Running" unique_id=2010016968]
+[node name="to_move" type="Node" parent="StateChart/Movement/GROUNDED/Running" unique_id=2010016968]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Moving")
 event = &"event_move"
 delay_in_seconds = "0.0"
 
-[node name="to_dash" type="Node" parent="StateChart/states/Movement/GROUNDED/Running" unique_id=1342632656]
+[node name="to_dash" type="Node" parent="StateChart/Movement/GROUNDED/Running" unique_id=1342632656]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Dash")
 event = &"event_dash"
 delay_in_seconds = "0.0"
 
-[node name="Dash" type="Node" parent="StateChart/states/Movement/GROUNDED" unique_id=566616291]
+[node name="Dash" type="Node" parent="StateChart/Movement/GROUNDED" unique_id=566616291]
 script = ExtResource("3_fkugw")
 
-[node name="to_idle" type="Node" parent="StateChart/states/Movement/GROUNDED/Dash" unique_id=307417175]
+[node name="to_idle" type="Node" parent="StateChart/Movement/GROUNDED/Dash" unique_id=307417175]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Idle")
 event = &"event_idle"
 delay_in_seconds = "0.0"
 
-[node name="DashTimer" type="Timer" parent="StateChart/states/Movement/GROUNDED/Dash" unique_id=1189179704]
+[node name="DashTimer" type="Timer" parent="StateChart/Movement/GROUNDED/Dash" unique_id=1189179704]
 unique_name_in_owner = true
 process_callback = 0
 one_shot = true
 
-[node name="event_fall" type="Node" parent="StateChart/states/Movement/GROUNDED" unique_id=1895866107]
+[node name="event_fall" type="Node" parent="StateChart/Movement/GROUNDED" unique_id=1895866107]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../AIRBORNE/Falling")
 event = &"event_fall"
 delay_in_seconds = "0.0"
 
-[node name="event_jump" type="Node" parent="StateChart/states/Movement/GROUNDED" unique_id=2129671858]
+[node name="event_jump" type="Node" parent="StateChart/Movement/GROUNDED" unique_id=2129671858]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../AIRBORNE/Jumping")
 event = &"event_jump"
 delay_in_seconds = "0.0"
 
-[node name="AIRBORNE" type="Node" parent="StateChart/states/Movement" unique_id=1146344445]
+[node name="AIRBORNE" type="Node" parent="StateChart/Movement" unique_id=1146344445]
 script = ExtResource("2_bls4j")
 initial_state = NodePath("Falling")
 
-[node name="Falling" type="Node" parent="StateChart/states/Movement/AIRBORNE" unique_id=1362490410]
+[node name="Falling" type="Node" parent="StateChart/Movement/AIRBORNE" unique_id=1362490410]
 script = ExtResource("3_fkugw")
 
-[node name="to_idle" type="Node" parent="StateChart/states/Movement/AIRBORNE/Falling" unique_id=2051148385]
+[node name="to_idle" type="Node" parent="StateChart/Movement/AIRBORNE/Falling" unique_id=2051148385]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../../GROUNDED/Idle")
 event = &"event_idle"
 delay_in_seconds = "0.0"
 
-[node name="Jumping" type="Node" parent="StateChart/states/Movement/AIRBORNE" unique_id=1974809612]
+[node name="Jumping" type="Node" parent="StateChart/Movement/AIRBORNE" unique_id=1974809612]
 script = ExtResource("3_fkugw")
 
-[node name="event_fall" type="Node" parent="StateChart/states/Movement/AIRBORNE/Jumping" unique_id=636719711]
+[node name="event_fall" type="Node" parent="StateChart/Movement/AIRBORNE/Jumping" unique_id=636719711]
 script = ExtResource("7_qiwj3")
 to = NodePath("../../Falling")
 event = &"event_fall"
 delay_in_seconds = "0.0"
 
-[node name="JumpTimer" type="Timer" parent="StateChart/states/Movement/AIRBORNE/Jumping" unique_id=1898194402]
+[node name="JumpTimer" type="Timer" parent="StateChart/Movement/AIRBORNE/Jumping" unique_id=1898194402]
 unique_name_in_owner = true
 process_callback = 0
 wait_time = 10.0
 one_shot = true
-
-[node name="Attack" type="Node" parent="StateChart/states" unique_id=1124312892]
-script = ExtResource("2_bls4j")
-initial_state = NodePath("AtomicState")
-
-[node name="AtomicState" type="Node" parent="StateChart/states/Attack" unique_id=1668363566]
-script = ExtResource("3_fkugw")
-
-[node name="AtomicState2" type="Node" parent="StateChart/states/Attack" unique_id=1468609836]
-script = ExtResource("3_fkugw")
 
 [node name="StateChartDebugger" parent="." unique_id=533545472 instance=ExtResource("9_bectd")]
 offset_right = -665.0
@@ -295,7 +284,8 @@ unique_name_in_owner = true
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=800904704]
 
-[node name="HealthUI" parent="UI" unique_id=333825233 instance=ExtResource("10_7thud")]
+[node name="HealthUI" parent="UI" unique_id=333825233 node_paths=PackedStringArray("curr_hp") instance=ExtResource("10_7thud")]
+curr_hp = NodePath("../../Stats/Health")
 
 [node name="Stats" type="Node" parent="." unique_id=36875404]
 
@@ -305,10 +295,9 @@ script = ExtResource("11_7thud")
 max_health = 3
 metadata/_custom_type_script = "uid://ckqu0thckrss7"
 
-[node name="Collisions" type="Node" parent="." unique_id=1991675244]
+[node name="Collisions" type="Node3D" parent="." unique_id=1839854096]
 
 [node name="Hurtbox" type="Area3D" parent="Collisions" unique_id=1528886693]
-visible = false
 collision_layer = 0
 collision_mask = 24
 script = ExtResource("10_wvtmh")
@@ -319,16 +308,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5112025, 0)
 shape = SubResource("CapsuleShape3D_7thud")
 debug_color = Color(1, 0, 0, 0.41960785)
 
-[connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED" to="." method="_on_grounded_state_physics_processing"]
-[connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED/Idle" to="." method="_on_idle_state_physics_processing"]
-[connection signal="state_processing" from="StateChart/states/Movement/GROUNDED/Moving" to="." method="_on_moving_state_processing"]
-[connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED/Running" to="." method="_on_running_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/states/Movement/GROUNDED/Dash" to="." method="_on_dash_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/states/Movement/GROUNDED/Dash" to="." method="_on_dash_state_physics_processing"]
-[connection signal="state_physics_processing" from="StateChart/states/Movement/AIRBORNE/Falling" to="." method="_on_fall_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_physics_processing"]
-[connection signal="state_unhandled_input" from="StateChart/states/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_unhandled_input"]
+[connection signal="state_physics_processing" from="StateChart/Movement/GROUNDED" to="." method="_on_grounded_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Movement/GROUNDED/Idle" to="." method="_on_idle_state_physics_processing"]
+[connection signal="state_processing" from="StateChart/Movement/GROUNDED/Moving" to="." method="_on_moving_state_processing"]
+[connection signal="state_physics_processing" from="StateChart/Movement/GROUNDED/Running" to="." method="_on_running_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Movement/GROUNDED/Dash" to="." method="_on_dash_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/Movement/GROUNDED/Dash" to="." method="_on_dash_state_physics_processing"]
+[connection signal="state_physics_processing" from="StateChart/Movement/AIRBORNE/Falling" to="." method="_on_fall_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_entered"]
+[connection signal="state_exited" from="StateChart/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_physics_processing"]
+[connection signal="state_unhandled_input" from="StateChart/Movement/AIRBORNE/Jumping" to="." method="_on_jumping_state_unhandled_input"]
 [connection signal="hit" from="Collisions/Hurtbox" to="." method="_on_hurtbox_hit"]
 
 [editable path="PlayerMesh/Weapon/Sword"]

@@ -26,7 +26,7 @@ func get_current_health() -> int:
 
 func remove_health(amount: int) -> void:
 	current_health -= amount
-	if current_health < 0:
+	if current_health < 0:	
 		current_health = 0
 
 
