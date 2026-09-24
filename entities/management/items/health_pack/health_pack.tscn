@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://byke5qp5q4exv"]
 
-[ext_resource type="Script" uid="uid://c5p1wanaojwb6" path="res://entities/items/health_pack/health_pack_script.gd" id="1_h0lom"]
-[ext_resource type="Texture2D" uid="uid://dcg8kbokkdmnf" path="res://entities/items/health_pack/healthpack.png" id="2_ltkjw"]
+[ext_resource type="Script" uid="uid://c5p1wanaojwb6" path="res://entities/management/items/health_pack/health_pack_script.gd" id="1_h0lom"]
+[ext_resource type="Texture2D" uid="uid://dcg8kbokkdmnf" path="res://entities/management/items/health_pack/healthpack.png" id="2_ltkjw"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ltkjw"]
 

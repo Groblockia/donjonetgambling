@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://xme4c6vtu1eq"]
 
-[ext_resource type="Script" uid="uid://cay1ibs2achv8" path="res://core/components/hitbox.gd" id="1_kxo41"]
-[ext_resource type="Texture2D" uid="uid://oh3jquipld00" path="res://entities/hazards/spikes/spike_img.png" id="2_3xfxc"]
+[ext_resource type="Script" uid="uid://cay1ibs2achv8" path="res://core/components/exploration/hitbox.gd" id="1_kxo41"]
+[ext_resource type="Texture2D" uid="uid://oh3jquipld00" path="res://entities/management/hazards/spikes/spike_img.png" id="2_3xfxc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o2qlf"]
 size = Vector3(1.5, 1.5, 1.5)

@@ -1,16 +1,16 @@
-[gd_scene format=4 uid="uid://577ilenwuh3v"]
+[gd_scene format=4 uid="uid://d3t3wu2myegvk"]
 
-[ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="1_twiol"]
-[ext_resource type="PackedScene" uid="uid://dut2t5wg4gp1t" path="res://entities/player/player.tscn" id="2_mjedn"]
-[ext_resource type="PackedScene" uid="uid://xme4c6vtu1eq" path="res://entities/hazards/spikes/spikes.tscn" id="3_tlpkn"]
-[ext_resource type="PackedScene" uid="uid://byke5qp5q4exv" path="res://entities/items/health_pack/health_pack.tscn" id="4_4tj15"]
-[ext_resource type="Texture2D" uid="uid://b8dvx4svlehfe" path="res://levels/test/Screenshot_20260822-1528232.jpg" id="5_twiol"]
+[ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="1_ce5u2"]
+[ext_resource type="PackedScene" uid="uid://dut2t5wg4gp1t" path="res://entities/management/player/player.tscn" id="2_pglf7"]
+[ext_resource type="PackedScene" uid="uid://xme4c6vtu1eq" path="res://entities/management/hazards/spikes/spikes.tscn" id="3_n5kkb"]
+[ext_resource type="PackedScene" uid="uid://byke5qp5q4exv" path="res://entities/management/items/health_pack/health_pack.tscn" id="4_0ubay"]
+[ext_resource type="Texture2D" uid="uid://b8dvx4svlehfe" path="res://levels/exploration/test_exploration_mode/Screenshot_20260822-1528232.jpg" id="5_hmgj7"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_5f5au"]
 size = Vector3(25, 0.5, 25)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5f5au"]
-albedo_texture = ExtResource("1_twiol")
+albedo_texture = ExtResource("1_ce5u2")
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_o2qlf"]
@@ -25,7 +25,7 @@ material = SubResource("StandardMaterial3D_5f5au")
 size = Vector3(0.5, 10, 10)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mjedn"]
-albedo_texture = ExtResource("5_twiol")
+albedo_texture = ExtResource("5_hmgj7")
 uv1_scale = Vector3(0.227, 0.227, 0.227)
 uv1_triplanar = true
 
@@ -67,7 +67,7 @@ data = PackedVector3Array(-1, 0, 1, 0, 0, 5.9604645e-08, 0, 0, 1, -1, 0, 1, -1, 
 [sub_resource type="Environment" id="Environment_o2qlf"]
 background_energy_multiplier = 0.1
 
-[node name="test" type="Node3D" unique_id=33430084]
+[node name="TestExplorationMode" type="Node3D" unique_id=33430084]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1893810238]
 collision_layer = 2
@@ -90,13 +90,13 @@ shape = SubResource("BoxShape3D_jtfo5")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=99975766]
 mesh = SubResource("BoxMesh_mioqa")
 
-[node name="CharacterBody3D" parent="." unique_id=2134559883 instance=ExtResource("2_mjedn")]
+[node name="CharacterBody3D" parent="." unique_id=2134559883 instance=ExtResource("2_pglf7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5718502, 0)
 
-[node name="Spikes" parent="." unique_id=1722469470 instance=ExtResource("3_tlpkn")]
+[node name="Spikes" parent="." unique_id=1722469470 instance=ExtResource("3_n5kkb")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6726625, 1.5718502, 4.7011547)
 
-[node name="HealthPack" parent="." unique_id=741003545 instance=ExtResource("4_4tj15")]
+[node name="HealthPack" parent="." unique_id=741003545 instance=ExtResource("4_0ubay")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6484303, 1.3583941, -0.2877065)
 
 [node name="test_room" type="Node3D" parent="." unique_id=1340056354]

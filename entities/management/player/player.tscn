@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://dut2t5wg4gp1t"]
 
-[ext_resource type="Script" uid="uid://dfuid7ufyf3eb" path="res://entities/player/player_script.gd" id="1_fkugw"]
+[ext_resource type="Script" uid="uid://dfuid7ufyf3eb" path="res://entities/management/player/player_script.gd" id="1_fkugw"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="1_sglur"]
-[ext_resource type="Script" uid="uid://bbpka5la4qs43" path="res://entities/player/camera_script.gd" id="2_8fjmc"]
+[ext_resource type="Script" uid="uid://bbpka5la4qs43" path="res://entities/management/player/camera_script.gd" id="2_8fjmc"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="2_bls4j"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="3_fkugw"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_qiwj3"]
 [ext_resource type="PackedScene" uid="uid://bcwkugn6v3oy7" path="res://addons/godot_state_charts/utilities/state_chart_debugger.tscn" id="9_bectd"]
-[ext_resource type="PackedScene" uid="uid://cjkxtxuk00tjs" path="res://ui/health/health_ui.tscn" id="10_7thud"]
-[ext_resource type="Script" uid="uid://cx65pjl7geigh" path="res://core/components/hurtbox.gd" id="10_wvtmh"]
-[ext_resource type="Script" uid="uid://ckqu0thckrss7" path="res://core/components/health.gd" id="11_7thud"]
-[ext_resource type="Shader" uid="uid://d03ajrw3h0cd" path="res://shared/shaders/depth_shader.gdshader" id="12_a1qjk"]
+[ext_resource type="PackedScene" uid="uid://cjkxtxuk00tjs" path="res://ui/exploration/health/health_ui.tscn" id="10_7thud"]
+[ext_resource type="Shader" uid="uid://d03ajrw3h0cd" path="res://shared/shaders/2d_to_3d_depth_shader.gdshader" id="12_a1qjk"]
+[ext_resource type="Script" uid="uid://ckqu0thckrss7" path="res://core/components/exploration/health.gd" id="12_arx0m"]
+[ext_resource type="Script" uid="uid://cx65pjl7geigh" path="res://core/components/exploration/hurtbox.gd" id="13_55ctc"]
 [ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="13_j3ovn"]
-[ext_resource type="PackedScene" uid="uid://ddru60yvfn1if" path="res://entities/weapons/sword/sword.tscn" id="14_afbqv"]
+[ext_resource type="PackedScene" uid="uid://ddru60yvfn1if" path="res://entities/management/weapons/sword/sword.tscn" id="14_afbqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sglur"]
 height = 1.5
@@ -38,74 +38,6 @@ shader_parameter/frame = 0
 [sub_resource type="BoxMesh" id="BoxMesh_7thud"]
 material = SubResource("ShaderMaterial_7thud")
 size = Vector3(1, 1, 0.203)
-
-[sub_resource type="Animation" id="Animation_gx6sm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("MeshPivot:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0.36540413, 1.2717893, 0.55431634)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MeshPivot:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 2.6179938)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("MeshPivot:quaternion")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Quaternion(0, 0, 1, 7.54979e-08)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 0, 0)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = false
-tracks/4/path = NodePath(".:quaternion")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Quaternion(0, 0.70710665, 0, 0.7071069)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_yqrof"]
-_data = {
-&"RESET": SubResource("Animation_gx6sm")
-}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7thud"]
 radius = 0.43017578
@@ -134,12 +66,6 @@ mesh = SubResource("BoxMesh_7thud")
 top_level = true
 
 [node name="Sword" parent="PlayerMesh/Weapon" unique_id=1400746801 instance=ExtResource("14_afbqv")]
-
-[node name="MeshPivot" parent="PlayerMesh/Weapon/Sword" index="0" unique_id=79376378]
-transform = Transform3D(-0.8660253, -0.5, 0, 0.5, -0.8660253, 0, 0, 0, 1, 0.36540413, 1.2717893, 0.55431634)
-
-[node name="AnimationPlayer" parent="PlayerMesh/Weapon/Sword" index="1" unique_id=1625742699]
-libraries/ = SubResource("AnimationLibrary_yqrof")
 
 [node name="StateChart" type="Node" parent="." unique_id=1951281325]
 script = ExtResource("1_sglur")
@@ -291,7 +217,7 @@ curr_hp = NodePath("../../Stats/Health")
 
 [node name="Health" type="Node" parent="Stats" unique_id=1666152975]
 unique_name_in_owner = true
-script = ExtResource("11_7thud")
+script = ExtResource("12_arx0m")
 max_health = 3
 metadata/_custom_type_script = "uid://ckqu0thckrss7"
 
@@ -300,7 +226,7 @@ metadata/_custom_type_script = "uid://ckqu0thckrss7"
 [node name="Hurtbox" type="Area3D" parent="Collisions" unique_id=1528886693]
 collision_layer = 0
 collision_mask = 24
-script = ExtResource("10_wvtmh")
+script = ExtResource("13_55ctc")
 metadata/_custom_type_script = "uid://cx65pjl7geigh"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Hurtbox" unique_id=456549030]

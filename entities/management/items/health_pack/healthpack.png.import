@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dcg8kbokkdmnf"
-path.s3tc="res://.godot/imported/healthpack.png-223498f457673e3f1193d8d29621d1c1.s3tc.ctex"
+path.s3tc="res://.godot/imported/healthpack.png-af6a0824cffe8eb9c88c7651eceb432e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://entities/items/health_pack/healthpack.png"
-dest_files=["res://.godot/imported/healthpack.png-223498f457673e3f1193d8d29621d1c1.s3tc.ctex"]
+source_file="res://entities/management/items/health_pack/healthpack.png"
+dest_files=["res://.godot/imported/healthpack.png-af6a0824cffe8eb9c88c7651eceb432e.s3tc.ctex"]
 
 [params]
 

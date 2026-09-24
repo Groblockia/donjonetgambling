@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b8dvx4svlehfe"
-path.s3tc="res://.godot/imported/Screenshot_20260822-1528232.jpg-20fa0f665b81b67304ba637e2e45064f.s3tc.ctex"
+path.s3tc="res://.godot/imported/Screenshot_20260822-1528232.jpg-56ac847ecbd8e9ec06b17915155f588c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://levels/test/Screenshot_20260822-1528232.jpg"
-dest_files=["res://.godot/imported/Screenshot_20260822-1528232.jpg-20fa0f665b81b67304ba637e2e45064f.s3tc.ctex"]
+source_file="res://levels/exploration/test_exploration_mode/Screenshot_20260822-1528232.jpg"
+dest_files=["res://.godot/imported/Screenshot_20260822-1528232.jpg-56ac847ecbd8e9ec06b17915155f588c.s3tc.ctex"]
 
 [params]
 

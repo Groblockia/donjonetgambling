@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cjkxtxuk00tjs"]
 
-[ext_resource type="Script" uid="uid://457ceboadhrq" path="res://ui/health/health_ui_script.gd" id="1_3vpjw"]
-[ext_resource type="Texture2D" uid="uid://bt6kibgxql7x3" path="res://ui/health/heart_full.png" id="2_k4jqs"]
+[ext_resource type="Script" uid="uid://457ceboadhrq" path="res://ui/exploration/health/health_ui_script.gd" id="1_m6cp6"]
+[ext_resource type="Texture2D" uid="uid://bt6kibgxql7x3" path="res://ui/exploration/health/heart_full.png" id="2_0phqe"]
 
 [node name="HealthUI" type="Control" unique_id=853864096]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_3vpjw")
+script = ExtResource("1_m6cp6")
 
 [node name="HeartContainer" type="HBoxContainer" parent="." unique_id=891553225]
 unique_name_in_owner = true
@@ -33,20 +33,20 @@ theme_override_constants/separation = 0
 [node name="TextureRect" type="TextureRect" parent="HeartContainer" unique_id=92108204 groups=["heart"]]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_k4jqs")
+texture = ExtResource("2_0phqe")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="TextureRect2" type="TextureRect" parent="HeartContainer" unique_id=1035912866 groups=["heart"]]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_k4jqs")
+texture = ExtResource("2_0phqe")
 expand_mode = 1
 stretch_mode = 4
 
 [node name="TextureRect3" type="TextureRect" parent="HeartContainer" unique_id=2133465982 groups=["heart"]]
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("2_k4jqs")
+texture = ExtResource("2_0phqe")
 expand_mode = 1
 stretch_mode = 4
