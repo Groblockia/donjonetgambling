@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ddru60yvfn1if"]
 
 [ext_resource type="Script" uid="uid://bre0s1m825ci3" path="res://core/components/exploration/weapon/weapon.gd" id="1_p1b4g"]
-[ext_resource type="PackedScene" uid="uid://dvmqefb7t2ciq" path="res://entities/management/weapons/sword/sword.glb" id="2_o81w5"]
-[ext_resource type="AnimationLibrary" uid="uid://cvlvnksw60xve" path="res://entities/management/weapons/sword/sword.res" id="3_o81w5"]
+[ext_resource type="PackedScene" uid="uid://dvmqefb7t2ciq" path="res://entities/exploration/weapons/sword/sword.glb" id="2_o81w5"]
+[ext_resource type="AnimationLibrary" uid="uid://cvlvnksw60xve" path="res://entities/exploration/weapons/sword/sword.res" id="3_o81w5"]
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_dqysa"]
 

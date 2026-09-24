@@ -1,3 +1,16 @@
 [gd_scene format=3 uid="uid://2nwgevp3bas5"]
 
+[ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="1_wo1se"]
+[ext_resource type="PackedScene" uid="uid://nspmemp7dysg" path="res://entities/management/camera/camera_top_down.tscn" id="2_vf8jn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xwwsg"]
+albedo_texture = ExtResource("1_wo1se")
+
 [node name="test_management_mode" type="Node3D" unique_id=1921395942]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=624251793]
+size = Vector3(50, 1, 25)
+material = SubResource("StandardMaterial3D_xwwsg")
+
+[node name="Camera3D" parent="." unique_id=1654389973 instance=ExtResource("2_vf8jn")]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 14, 6)

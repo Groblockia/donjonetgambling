@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcg8kbokkdmnf"
-path.s3tc="res://.godot/imported/healthpack.png-af6a0824cffe8eb9c88c7651eceb432e.s3tc.ctex"
+uid="uid://oh3jquipld00"
+path.s3tc="res://.godot/imported/spike_img.png-af71bf7a11b3f3c202434819270bd6bd.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://entities/management/items/health_pack/healthpack.png"
-dest_files=["res://.godot/imported/healthpack.png-af6a0824cffe8eb9c88c7651eceb432e.s3tc.ctex"]
+source_file="res://entities/exploration/hazards/spikes/spike_img.png"
+dest_files=["res://.godot/imported/spike_img.png-af71bf7a11b3f3c202434819270bd6bd.s3tc.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dut2t5wg4gp1t"]
 
-[ext_resource type="Script" uid="uid://dfuid7ufyf3eb" path="res://entities/management/player/player_script.gd" id="1_fkugw"]
+[ext_resource type="Script" uid="uid://dfuid7ufyf3eb" path="res://entities/exploration/player/player_script.gd" id="1_fkugw"]
 [ext_resource type="Script" uid="uid://couw105c3bde4" path="res://addons/godot_state_charts/state_chart.gd" id="1_sglur"]
-[ext_resource type="Script" uid="uid://bbpka5la4qs43" path="res://entities/management/player/camera_script.gd" id="2_8fjmc"]
+[ext_resource type="Script" uid="uid://bbpka5la4qs43" path="res://entities/exploration/player/camera_script.gd" id="2_8fjmc"]
 [ext_resource type="Script" uid="uid://jk2jm1g6q853" path="res://addons/godot_state_charts/compound_state.gd" id="2_bls4j"]
 [ext_resource type="Script" uid="uid://cytafq8i1y8qm" path="res://addons/godot_state_charts/atomic_state.gd" id="3_fkugw"]
 [ext_resource type="Script" uid="uid://cf1nsco3w0mf6" path="res://addons/godot_state_charts/transition.gd" id="7_qiwj3"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://ckqu0thckrss7" path="res://core/components/exploration/health.gd" id="12_arx0m"]
 [ext_resource type="Script" uid="uid://cx65pjl7geigh" path="res://core/components/exploration/hurtbox.gd" id="13_55ctc"]
 [ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="13_j3ovn"]
-[ext_resource type="PackedScene" uid="uid://ddru60yvfn1if" path="res://entities/management/weapons/sword/sword.tscn" id="14_afbqv"]
+[ext_resource type="PackedScene" uid="uid://ddru60yvfn1if" path="res://entities/exploration/weapons/sword/sword.tscn" id="14_afbqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sglur"]
 height = 1.5
