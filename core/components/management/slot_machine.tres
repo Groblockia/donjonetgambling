@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ManagementInvItem" format=3 uid="uid://bkiobaq3am3yv"]
+
+[ext_resource type="Script" uid="uid://ci7eftq82o0op" path="res://core/components/management/inventory_item.gd" id="1_mfuca"]
+[ext_resource type="Texture2D" uid="uid://d1iityqc2i2vx" path="res://shared/placeholders/slot_machine_placeholder.jpg" id="2_np2hb"]
+
+[resource]
+script = ExtResource("1_mfuca")
+name = "Slot machine A (placeholder)"
+texture = ExtResource("2_np2hb")
+metadata/_custom_type_script = "uid://ci7eftq82o0op"

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ManagementInv" format=3 uid="uid://be566ar7l6ga6"]
+
+[ext_resource type="Script" uid="uid://ci7eftq82o0op" path="res://core/components/management/inventory_item.gd" id="1_ve36y"]
+[ext_resource type="Script" uid="uid://l6y2he4kfwch" path="res://core/components/management/inventory.gd" id="2_5q6si"]
+[ext_resource type="Resource" uid="uid://bkiobaq3am3yv" path="res://core/components/management/slot_machine.tres" id="2_a1why"]
+
+[resource]
+script = ExtResource("2_5q6si")
+items = Array[ExtResource("1_ve36y")]([ExtResource("2_a1why"), null, null, null, null, null])
+metadata/_custom_type_script = "uid://l6y2he4kfwch"
