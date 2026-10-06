@@ -1,0 +1,131 @@
+{
+	"categories": [
+		{
+			"uuid": "a7b4733f-c95a-4f4a-a193-70951d3e5f31",
+			"title": "General",
+			"color": "7657ff"
+		},
+		{
+			"uuid": "9cffce70-db7c-4ba7-8229-3a0c541b90c2",
+			"title": "Management",
+			"color": "14d2e8"
+		},
+		{
+			"uuid": "bb0a840d-16c8-4f2a-b2fa-2a39aac5fd8d",
+			"title": "Exploration",
+			"color": "a00404"
+		},
+		{
+			"uuid": "690006a4-b520-43fd-9280-c2d0daee34c3",
+			"title": "UI",
+			"color": "25e208"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "cf828e46-9120-4584-b1ff-57fe75b70545",
+			"title": "Todo",
+			"tasks": [
+				"68da5750-0a0f-4a7f-a92c-638b457ade9f",
+				"590ca305-5116-43b7-93ac-dabd1f3bdb59",
+				"af2c8dbf-47a5-4bc3-978c-3401dfd03ac0",
+				"6fb24050-196d-4de7-a5e7-aa8c3092e6e5",
+				"855aec12-c2fd-416e-be67-c579370a1d5f",
+				"28a70f39-a892-489b-a647-3f3bafaac7d7"
+			]
+		},
+		{
+			"uuid": "12edd56d-ea23-4af8-bfff-8a1cfe8b9ba7",
+			"title": "Doing",
+			"tasks": [
+				"09faace0-5ae7-45ce-93b1-7989895ff777"
+			]
+		},
+		{
+			"uuid": "5f423665-c0dc-4d98-83fb-b2bd7454acbd",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "09faace0-5ae7-45ce-93b1-7989895ff777",
+			"title": "Camera",
+			"description": "Camera that can be moved with wasd or arrow keys. (drag movement maybe?)\n",
+			"category": "9cffce70-db7c-4ba7-8229-3a0c541b90c2",
+			"steps": []
+		},
+		{
+			"uuid": "68da5750-0a0f-4a7f-a92c-638b457ade9f",
+			"title": "Buildings",
+			"description": "Add building, they need to hold data regarding their customer attraction, winrate, how much gold-> coin conversion rate",
+			"category": "9cffce70-db7c-4ba7-8229-3a0c541b90c2",
+			"steps": [
+				{
+					"details": "Make simple Inventory to choose buildings from",
+					"done": false
+				},
+				{
+					"details": "Add ability to place them in-world",
+					"done": false
+				},
+				{
+					"details": "Add ability to delete them",
+					"done": false
+				},
+				{
+					"details": "Add ability to interact with them (GUI)\n",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "af2c8dbf-47a5-4bc3-978c-3401dfd03ac0",
+			"title": "Dungeon generation",
+			"description": "Make procedurally generated dungeon terrain\n",
+			"category": "bb0a840d-16c8-4f2a-b2fa-2a39aac5fd8d",
+			"steps": []
+		},
+		{
+			"uuid": "855aec12-c2fd-416e-be67-c579370a1d5f",
+			"title": "Main menu",
+			"description": "",
+			"category": "690006a4-b520-43fd-9280-c2d0daee34c3",
+			"steps": []
+		},
+		{
+			"uuid": "28a70f39-a892-489b-a647-3f3bafaac7d7",
+			"title": "Options menu",
+			"description": "",
+			"category": "690006a4-b520-43fd-9280-c2d0daee34c3",
+			"steps": []
+		},
+		{
+			"uuid": "6fb24050-196d-4de7-a5e7-aa8c3092e6e5",
+			"title": "Stalker mob",
+			"description": "Follows you slowly throughout the dungeon, while making loud noise like a T-rex. Starts chasing you if seen",
+			"category": "bb0a840d-16c8-4f2a-b2fa-2a39aac5fd8d",
+			"steps": []
+		},
+		{
+			"uuid": "590ca305-5116-43b7-93ac-dabd1f3bdb59",
+			"title": "Add gameplay phases",
+			"description": "Planning phase: You build the casino, placing/deleting/upgrading your machines\nSimulation phase: You open the casino and clients start coming in, slowly transforming the gold into money. Can be skipped (maybe special interactions during that phase?)",
+			"category": "9cffce70-db7c-4ba7-8229-3a0c541b90c2",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"cf828e46-9120-4584-b1ff-57fe75b70545"
+			],
+			[
+				"12edd56d-ea23-4af8-bfff-8a1cfe8b9ba7"
+			],
+			[
+				"5f423665-c0dc-4d98-83fb-b2bd7454acbd"
+			]
+		]
+	}
+}
