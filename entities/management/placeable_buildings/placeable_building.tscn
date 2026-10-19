@@ -23,6 +23,7 @@ material = SubResource("StandardMaterial3D_1uu6v")
 
 [node name="PlaceableBuilding" type="Area3D" unique_id=1081068782]
 script = ExtResource("1_1uu6v")
+height_offset = 0.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=953271674]
 shape = SubResource("BoxShape3D_1uu6v")

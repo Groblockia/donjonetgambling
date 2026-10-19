@@ -18,8 +18,8 @@ domain_warp_enabled = true
 domain_warp_type = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_indu5"]
-width = 1024
-height = 1024
+width = 2048
+height = 2048
 noise = SubResource("FastNoiseLite_2psxp")
 color_ramp = SubResource("Gradient_khms8")
 seamless = true
@@ -49,19 +49,21 @@ size = Vector3(30, 1, 19)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2062270400]
 transform = Transform3D(1, 0, 0, 0, 0.7071068, 0.7071068, 0, -0.7071068, 0.7071068, 0, 8.611352, 8.40674)
+fov = 50.0
 script = ExtResource("2_vf8jn")
+ground_y_level = 0.5
 
 [node name="PlaceableBuilding" parent="." unique_id=1081068782 instance=ExtResource("3_khms8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3246994, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 collision_layer = 64
 collision_mask = 64
 
 [node name="PlaceableBuilding2" parent="." unique_id=938389587 instance=ExtResource("3_khms8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0834966, 1.3246994, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.0834966, 1, 0)
 collision_layer = 64
 collision_mask = 64
 
 [node name="PlaceableBuilding3" parent="." unique_id=1668912683 instance=ExtResource("3_khms8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2321362, 1.3246994, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2321362, 1, 0)
 collision_layer = 64
 collision_mask = 64

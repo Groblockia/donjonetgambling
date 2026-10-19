@@ -1,20 +1,23 @@
 extends Camera3D
 
 @export var move_speed := 0.5
-
+@export var ground_y_level := 0.0
+@export var lerp_speed := 10.0
 ## will be changed in settings later
 @export var deadzone := 0.05
 
+var grid_size := 2.0
 var mouse_col: ManagementPlaceableBuilding
-var currently_moving_building: ManagementPlaceableBuilding
-var moving_building: bool
+var dragged_building: ManagementPlaceableBuilding = null
+
+@onready var drag_plane := Plane(Vector3.UP, ground_y_level)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	highlight_building()
-	move_building(currently_moving_building)
-	if Input.is_action_pressed("mouse_left_click"):
-		moving_building = true
+
+	if dragged_building != null:
+		update_dragged_building_position(delta)
 
 
 func _physics_process(_delta: float) -> void:
@@ -28,20 +31,56 @@ func _physics_process(_delta: float) -> void:
 		position.z -= move_speed
 
 
-func move_building(current_building: ManagementPlaceableBuilding) -> void:
-	if moving_building:
-		if currently_moving_building != null:
-			var ray = ray_to_cursor(true)
-			current_building.global_position.x = ray.position.x if ray else current_building.global_position.x
-			current_building.global_position.z = ray.position.z if ray else current_building.global_position.z
-	else:
-		currently_moving_building = null
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("mouse_left_click"):
+		if mouse_col != null:
+			dragged_building = mouse_col
+			# dragged_building.start_dragging()
+	if Input.is_action_just_released("mouse_left_click"):
+		if dragged_building != null:
+			# dragged_building.place()
+			dragged_building.global_position = get_snapped_mouse_position()
+			dragged_building = null
+
+
+## calculates where the mouse hits the ground and snaps it to the grid
+func get_snapped_mouse_position() -> Vector3:
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_origin = project_ray_origin(mouse_pos)
+	var ray_normal = project_ray_normal(mouse_pos)
+
+	var intersection = drag_plane.intersects_ray(ray_origin, ray_normal)
+	intersection.y += dragged_building.height_offset
+	if intersection != null:
+		# Apply grid snapping
+		if grid_size > 0.0:
+			intersection.x = round(intersection.x / grid_size) * grid_size
+			intersection.z = round(intersection.z / grid_size) * grid_size
+		return intersection
+
+	return dragged_building.global_position if dragged_building else Vector3.ZERO
+
+
+## smoothly follows the raw mouse cursor position on the ground plane
+func update_dragged_building_position(delta: float) -> void:
+	var mouse_pos = get_viewport().get_mouse_position()
+	var ray_origin = project_ray_origin(mouse_pos)
+	var ray_normal = project_ray_normal(mouse_pos)
+
+	var intersection = drag_plane.intersects_ray(ray_origin, ray_normal)
+	intersection.y += dragged_building.height_offset
+	if intersection != null:
+		# Lerp toward the raw (unsnapped) intersection for smooth movement
+		dragged_building.global_position = dragged_building.global_position.lerp(
+			intersection,
+			lerp_speed * delta,
+		)
 
 
 ## sends highlight call to building
 func highlight_building() -> void:
 	var query := ray_to_cursor()
-	if query.size() > 1:
+	if !query.is_empty():
 		if query.collider is ManagementPlaceableBuilding:
 			mouse_col = query.collider
 			mouse_col.mouse_hover(true)
@@ -55,15 +94,14 @@ func highlight_building() -> void:
 		mouse_col = null
 
 
-## returns a dict containing: collider_id, collider, normal, position, face_index, rid, shape
-## if [param only_pos], doesn't interact with areas
+## returns a dict containing: collider_id, collider, normal, position, face_index, rid, shape.
+## If [param only_pos], doesn't interact with areas
 func ray_to_cursor(only_pos: bool = false) -> Dictionary:
 	var mouse_pos = get_viewport().get_mouse_position()
-	var camera = self
 
 	var ray_length := 1000.0
-	var ray_origin := camera.project_ray_origin(mouse_pos)
-	var ray_end := ray_origin + camera.project_ray_normal(mouse_pos) * ray_length
+	var ray_origin := project_ray_origin(mouse_pos)
+	var ray_end := ray_origin + project_ray_normal(mouse_pos) * ray_length
 
 	var space_state := get_world_3d().direct_space_state
 	var query := PhysicsRayQueryParameters3D.create(ray_origin, ray_end)

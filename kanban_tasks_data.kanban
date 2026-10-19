@@ -26,7 +26,6 @@
 			"uuid": "cf828e46-9120-4584-b1ff-57fe75b70545",
 			"title": "Todo",
 			"tasks": [
-				"09faace0-5ae7-45ce-93b1-7989895ff777",
 				"590ca305-5116-43b7-93ac-dabd1f3bdb59",
 				"af2c8dbf-47a5-4bc3-978c-3401dfd03ac0",
 				"6fb24050-196d-4de7-a5e7-aa8c3092e6e5",
@@ -44,14 +43,16 @@
 		{
 			"uuid": "5f423665-c0dc-4d98-83fb-b2bd7454acbd",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"09faace0-5ae7-45ce-93b1-7989895ff777"
+			]
 		}
 	],
 	"tasks": [
 		{
 			"uuid": "09faace0-5ae7-45ce-93b1-7989895ff777",
 			"title": "Camera",
-			"description": "Camera that can be moved with wasd or arrow keys. (drag movement maybe?)\n",
+			"description": "Camera that can be moved with wasd or arrow keys.\n",
 			"category": "9cffce70-db7c-4ba7-8229-3a0c541b90c2",
 			"steps": []
 		},
@@ -70,7 +71,7 @@
 					"done": true
 				},
 				{
-					"details": "Move building",
+					"details": "Move building (check if position is valid, else cancel)",
 					"done": false
 				},
 				{
