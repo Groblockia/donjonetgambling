@@ -26,7 +26,7 @@
 			"uuid": "cf828e46-9120-4584-b1ff-57fe75b70545",
 			"title": "Todo",
 			"tasks": [
-				"68da5750-0a0f-4a7f-a92c-638b457ade9f",
+				"09faace0-5ae7-45ce-93b1-7989895ff777",
 				"590ca305-5116-43b7-93ac-dabd1f3bdb59",
 				"af2c8dbf-47a5-4bc3-978c-3401dfd03ac0",
 				"6fb24050-196d-4de7-a5e7-aa8c3092e6e5",
@@ -38,7 +38,7 @@
 			"uuid": "12edd56d-ea23-4af8-bfff-8a1cfe8b9ba7",
 			"title": "Doing",
 			"tasks": [
-				"09faace0-5ae7-45ce-93b1-7989895ff777"
+				"68da5750-0a0f-4a7f-a92c-638b457ade9f"
 			]
 		},
 		{
@@ -62,19 +62,23 @@
 			"category": "9cffce70-db7c-4ba7-8229-3a0c541b90c2",
 			"steps": [
 				{
-					"details": "Make simple Inventory to choose buildings from",
+					"details": "make Building class",
+					"done": true
+				},
+				{
+					"details": "Highilight building",
+					"done": true
+				},
+				{
+					"details": "Move building",
 					"done": false
 				},
 				{
-					"details": "Add ability to place them in-world",
+					"details": "Interact with building",
 					"done": false
 				},
 				{
-					"details": "Add ability to delete them",
-					"done": false
-				},
-				{
-					"details": "Add ability to interact with them (GUI)\n",
+					"details": "Spawn building from an inventory",
 					"done": false
 				}
 			]

@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bjoynnam6ihtk"]
+
+[ext_resource type="Script" uid="uid://qhrrmpfgpn1a" path="res://entities/management/placeable_buildings/placeable_building.gd" id="1_1uu6v"]
+[ext_resource type="Shader" uid="uid://ds3wlcwtfdtl0" path="res://shared/shaders/hull_outline.gdshader" id="2_t04ic"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1uu6v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1uu6v"]
+render_priority = 0
+shader = ExtResource("2_t04ic")
+shader_parameter/outline_color = Color(0.38333344, 1, 0, 1)
+shader_parameter/thickness = 0.1350000064125
+shader_parameter/outline_energy = 1.0
+shader_parameter/merge_group = false
+shader_parameter/merge_depth_range = 10.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uu6v"]
+next_pass = SubResource("ShaderMaterial_1uu6v")
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t04ic"]
+material = SubResource("StandardMaterial3D_1uu6v")
+
+[node name="PlaceableBuilding" type="Area3D" unique_id=1081068782]
+script = ExtResource("1_1uu6v")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=953271674]
+shape = SubResource("BoxShape3D_1uu6v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=996383039]
+mesh = SubResource("BoxMesh_t04ic")

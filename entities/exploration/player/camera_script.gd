@@ -2,6 +2,7 @@ extends Node3D
 
 const SENSITIVITY_SCALE: float = 0.00038397243458548043006658879114174
 
+## these vars will be changed in settings later
 @export_category("accesibility settings")
 @export var mouse_sens := 3.5
 @export var joystick_sens := 5.0
