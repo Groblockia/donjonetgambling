@@ -6,7 +6,7 @@ extends Camera3D
 ## will be changed in settings later
 @export var deadzone := 0.05
 
-var grid_size := 2.0
+var grid_size := 1.0
 var mouse_col: ManagementPlaceableBuilding
 var dragged_building: ManagementPlaceableBuilding = null
 
@@ -82,6 +82,8 @@ func highlight_building() -> void:
 	var query := ray_to_cursor()
 	if !query.is_empty():
 		if query.collider is ManagementPlaceableBuilding:
+			@warning_ignore("standalone_ternary")
+			mouse_col.mouse_hover(false) if mouse_col is ManagementPlaceableBuilding else null
 			mouse_col = query.collider
 			mouse_col.mouse_hover(true)
 		else:
