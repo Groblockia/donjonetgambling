@@ -1,6 +1,5 @@
 extends Node3D
 
-
 @export var move_speed := 0.5
 @export var ground_y_level := 0.0
 @export var lerp_speed := 10.0
@@ -10,6 +9,7 @@ extends Node3D
 var grid_size := 1.0
 var mouse_col: ManagementPlaceableBuilding
 var dragged_building: ManagementPlaceableBuilding = null
+var do_highlight: bool
 
 @onready var drag_plane := Plane(Vector3.UP, ground_y_level)
 @onready var camera = $Camera3D
@@ -35,10 +35,12 @@ func _physics_process(_delta: float) -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("mouse_left_click"):
+		do_highlight = false
 		if mouse_col != null:
 			dragged_building = mouse_col
 			# dragged_building.start_dragging()
 	if Input.is_action_just_released("mouse_left_click"):
+		do_highlight = true
 		if dragged_building != null:
 			# dragged_building.place()
 			dragged_building.global_position = get_snapped_mouse_position()
@@ -83,7 +85,7 @@ func update_dragged_building_position(delta: float) -> void:
 func highlight_building() -> void:
 	var query := ray_to_cursor()
 	if !query.is_empty():
-		if query.collider is ManagementPlaceableBuilding:
+		if query.collider is ManagementPlaceableBuilding && do_highlight:
 			@warning_ignore("standalone_ternary")
 			mouse_col.mouse_hover(false) if mouse_col is ManagementPlaceableBuilding else null
 			mouse_col = query.collider
@@ -99,7 +101,7 @@ func highlight_building() -> void:
 
 
 ## returns a dict containing: collider_id, collider, normal, position, face_index, rid, shape.
-## If [param only_pos], doesn't interact with areas
+## If [param only_pos], doesn't interact with areas (to avoid building collisions)
 func ray_to_cursor(only_pos: bool = false) -> Dictionary:
 	var mouse_pos = get_viewport().get_mouse_position()
 
