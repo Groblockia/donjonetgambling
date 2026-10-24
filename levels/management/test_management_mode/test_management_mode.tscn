@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://b3wk68fjmiady" path="res://icon.svg" id="2_njp73"]
 [ext_resource type="Sky" uid="uid://bqjk46k88mq87" path="res://levels/management/test_management_mode/sky.tres" id="2_uye6n"]
 [ext_resource type="PackedScene" uid="uid://bjoynnam6ihtk" path="res://entities/management/placeable_buildings/placeable_building.tscn" id="3_khms8"]
+[ext_resource type="Material" path="res://addons/csg_blockout/res/materials/mat_grid_light.tres" id="5_uye6n"]
 
 [sub_resource type="Environment" id="Environment_khms8"]
 background_mode = 2
@@ -26,6 +27,7 @@ environment = SubResource("Environment_khms8")
 transform = Transform3D(-0.05233594, 0.90432763, 0.4236181, 0, -0.42419934, 0.90556896, 0.9986295, 0.047393788, 0.022200877, 0, 23.147692, 0)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=400569777]
+visible = false
 use_collision = true
 size = Vector3(30, 1, 19)
 material = SubResource("StandardMaterial3D_khms8")
@@ -48,3 +50,17 @@ collision_mask = 64
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.232, 1.1, 0)
 collision_layer = 64
 collision_mask = 64
+
+[node name="Room" type="CSGCombiner3D" parent="." unique_id=781259295]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.5, 1.5)
+use_collision = true
+
+[node name="Shell" type="CSGBox3D" parent="Room" unique_id=202007702]
+size = Vector3(17, 3, 11)
+material = ExtResource("5_uye6n")
+
+[node name="Hollow" type="CSGBox3D" parent="Room" unique_id=991414057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
+operation = 2
+size = Vector3(16.5, 2.76, 10.5)
+material = ExtResource("5_uye6n")

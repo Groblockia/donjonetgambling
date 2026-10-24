@@ -32,7 +32,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/limbo_console/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg")
+enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg", "res://addons/csg_blockout/plugin.cfg", "res://addons/discord-rpc-gd/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/limbo_console/plugin.cfg", "res://addons/project-time-tracker/plugin.cfg")
 
 [file_customization]
 

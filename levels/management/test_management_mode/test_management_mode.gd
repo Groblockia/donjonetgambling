@@ -3,10 +3,10 @@ extends Node3D
 @export var move_speed := 0.5
 @export var ground_y_level := 0.0
 @export var lerp_speed := 10.0
+@export var grid_size := 1.0
 ## will be changed in settings later
 @export var deadzone := 0.05
 
-var grid_size := 1.0
 var mouse_col: ManagementPlaceableBuilding
 var dragged_building: ManagementPlaceableBuilding = null
 var do_highlight: bool
